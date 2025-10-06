@@ -67,7 +67,7 @@ export default function InstructorDetail({ instructorSlug }: InstructorDetailPro
         'Best VA Training Program 2023',
         '500+ Successful VA Placements'
       ],
-      courses: [
+      instructorCourses: [
         {
           id: 1,
           title: 'Virtual Assistant grondbeginselen',
@@ -331,7 +331,7 @@ export default function InstructorDetail({ instructorSlug }: InstructorDetailPro
               <div className="glass-effect rounded-2xl p-6 mb-6">
                 <h3 className="text-xl font-bold text-text mb-6">Courses by {instructor.name}</h3>
                 <div className="space-y-4">
-                  {instructor.courses.map((course) => (
+                  {instructor.instructorCourses.map((course) => (
                     <div key={course.id} className="flex items-center space-x-4 p-4 bg-surface rounded-xl border border-gray-700 hover:border-primary-gold/30 transition-colors">
                       <div className="w-16 h-12 bg-gradient-to-br from-primary-gold/20 to-primary-gold/10 rounded-lg flex items-center justify-center">
                         <Play className="w-6 h-6 text-primary-gold" />
