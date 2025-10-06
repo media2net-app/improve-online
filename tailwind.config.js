@@ -9,9 +9,9 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          gold: '#FFD700',
-          'gold-dark': '#B8860B',
-          'gold-light': '#FFF8DC',
+          blue: '#3B82F6',
+          'blue-dark': '#1E40AF',
+          'blue-light': '#DBEAFE',
         },
         background: '#000000',
         surface: '#111111',

@@ -4,15 +4,18 @@ import { useState, useEffect } from 'react'
 import { 
   X, 
   Crown, 
-  BookOpen, 
-  TrendingUp, 
-  Users, 
+  Heart, 
+  Target, 
+  Lightbulb, 
   Calendar, 
   FileText, 
-  CreditCard,
+  Compass,
   CheckCircle,
   ArrowRight,
-  Star
+  Star,
+  Waves,
+  Mountain,
+  Users
 } from 'lucide-react'
 
 interface DemoModalProps {
@@ -25,19 +28,19 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
   const demoSteps = [
     {
-      title: 'Welkom bij Dorette Academy!',
-      subtitle: 'Je persoonlijke Virtual Assistant opleiding',
+      title: 'Welkom bij Curacao Retraite!',
+      subtitle: 'Je persoonlijke groei en missie herdefiniëren',
       content: (
         <div className="text-center">
-          <div className="w-20 h-20 bg-gradient-to-br from-primary-gold to-primary-gold-dark rounded-full flex items-center justify-center mx-auto mb-6 luxury-glow">
-            <Crown className="w-10 h-10 text-black" />
+          <div className="w-20 h-20 bg-gradient-to-br from-primary-blue to-primary-blue-dark rounded-full flex items-center justify-center mx-auto mb-6 luxury-glow">
+            <Crown className="w-10 h-10 text-white" />
           </div>
           <p className="text-text-secondary text-lg mb-4">
-            Deze demo toont wat cursisten te zien krijgen tijdens hun VA-opleiding van 0 tot 100.
+            Deze demo toont wat deelnemers te zien krijgen tijdens hun 7-daags retraite op Curaçao.
           </p>
-          <div className="bg-primary-gold/10 border border-primary-gold/20 rounded-xl p-4">
-            <p className="text-primary-gold font-semibold">
-              🎯 Van beginner tot professionele Virtual Assistant
+          <div className="bg-primary-blue/10 border border-primary-blue/20 rounded-xl p-4">
+            <p className="text-primary-blue font-semibold">
+              🌴 Van zelfreflectie tot levensmissie op een tropisch eiland
             </p>
           </div>
         </div>
@@ -45,36 +48,36 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
     },
     {
       title: 'Persoonlijk dashboard',
-      subtitle: 'Jouw leervoortgang in één oogopslag',
+      subtitle: 'Jouw groeivoortgang in één oogopslag',
       content: (
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="flex items-center space-x-3 p-3 bg-surface rounded-xl">
-              <BookOpen className="w-6 h-6 text-primary-gold" />
+              <Heart className="w-6 h-6 text-primary-blue" />
               <div>
-                <p className="text-text font-semibold">Lessen voltooid</p>
-                <p className="text-text-muted text-sm">8/24 lessen</p>
+                <p className="text-text font-semibold">Modules voltooid</p>
+                <p className="text-text-muted text-sm">3/8 modules</p>
               </div>
             </div>
             <div className="flex items-center space-x-3 p-3 bg-surface rounded-xl">
-              <TrendingUp className="w-6 h-6 text-primary-gold" />
+              <Target className="w-6 h-6 text-primary-blue" />
               <div>
-                <p className="text-text font-semibold">Huidige reeks</p>
-                <p className="text-text-muted text-sm">5 dagen</p>
+                <p className="text-text font-semibold">Reflectie streak</p>
+                <p className="text-text-muted text-sm">7 dagen</p>
               </div>
             </div>
           </div>
-          <div className="bg-primary-gold/10 border border-primary-gold/20 rounded-xl p-4">
+          <div className="bg-primary-blue/10 border border-primary-blue/20 rounded-xl p-4">
             <p className="text-text-secondary">
-              <strong>Voortgang tracking:</strong> Zie je prestaties, behaalde certificaten en volgende stappen in je VA-reis.
+              <strong>Voortgang tracking:</strong> Zie je groei, behaalde mijlpalen en volgende stappen in je retraite reis.
             </p>
           </div>
         </div>
       )
     },
     {
-      title: 'Academy & cursussen',
-      subtitle: 'Stap-voor-stap VA-opleiding',
+      title: '7-Daags Programma',
+      subtitle: 'Van aankomst tot missie definitie',
       content: (
         <div className="space-y-4">
           <div className="space-y-3">
@@ -83,94 +86,94 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 <CheckCircle className="w-5 h-5 text-green-400" />
               </div>
               <div>
-                <p className="text-text font-semibold">Grondbeginselen</p>
-                <p className="text-text-muted text-sm">Basis VA-vaardigheden</p>
+                <p className="text-text font-semibold">Dag 2: Klein Curaçao</p>
+                <p className="text-text-muted text-sm">IKIGAI workshop op paradijselijk eiland</p>
               </div>
             </div>
             <div className="flex items-center space-x-3 p-3 bg-surface rounded-xl">
               <div className="w-8 h-8 bg-yellow-400/20 rounded-lg flex items-center justify-center">
-                <Star className="w-5 h-5 text-yellow-400" />
+                <Mountain className="w-5 h-5 text-yellow-400" />
               </div>
               <div>
-                <p className="text-text font-semibold">Communicatie</p>
-                <p className="text-text-muted text-sm">Client management</p>
+                <p className="text-text font-semibold">Dag 3: Christoffelberg</p>
+                <p className="text-text-muted text-sm">Uitdagende hike met diepgaande reflectie</p>
               </div>
             </div>
             <div className="flex items-center space-x-3 p-3 bg-surface rounded-xl">
               <div className="w-8 h-8 bg-blue-400/20 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-blue-400" />
+                <Target className="w-5 h-5 text-blue-400" />
               </div>
               <div>
-                <p className="text-text font-semibold">Productiviteit</p>
-                <p className="text-text-muted text-sm">Tools & automatisering</p>
+                <p className="text-text font-semibold">Dag 5: Mission Statement</p>
+                <p className="text-text-muted text-sm">Persoonlijke missie en visie formuleren</p>
               </div>
             </div>
           </div>
-          <div className="bg-primary-gold/10 border border-primary-gold/20 rounded-xl p-4">
+          <div className="bg-primary-blue/10 border border-primary-blue/20 rounded-xl p-4">
             <p className="text-text-secondary">
-              <strong>Interactieve lessen:</strong> Video's, quizzen, praktijkopdrachten en certificaten voor elke module.
+              <strong>Unieke ervaringen:</strong> Elke dag een nieuwe uitdaging en inzicht in je persoonlijke groei.
             </p>
           </div>
         </div>
       )
     },
     {
-      title: 'VA Business Toolkit',
-      subtitle: 'Alles wat je nodig hebt om te starten',
+      title: 'Retraite Toolkit',
+      subtitle: 'Alles voor je persoonlijke ontwikkeling',
       content: (
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="flex items-center space-x-3 p-3 bg-surface rounded-xl">
-              <Users className="w-6 h-6 text-primary-gold" />
+              <FileText className="w-6 h-6 text-primary-blue" />
               <div>
-                <p className="text-text font-semibold">Klantbeheer</p>
-                <p className="text-text-muted text-sm">CRM systeem</p>
+                <p className="text-text font-semibold">Intake</p>
+                <p className="text-text-muted text-sm">Persoonlijke analyse</p>
               </div>
             </div>
             <div className="flex items-center space-x-3 p-3 bg-surface rounded-xl">
-              <Calendar className="w-6 h-6 text-primary-gold" />
+              <Heart className="w-6 h-6 text-primary-blue" />
               <div>
-                <p className="text-text font-semibold">Agenda</p>
-                <p className="text-text-muted text-sm">Afspraken plannen</p>
+                <p className="text-text font-semibold">Persoonlijke Groei</p>
+                <p className="text-text-muted text-sm">Zelfontwikkeling modules</p>
               </div>
             </div>
             <div className="flex items-center space-x-3 p-3 bg-surface rounded-xl">
-              <FileText className="w-6 h-6 text-primary-gold" />
+              <Target className="w-6 h-6 text-primary-blue" />
               <div>
-                <p className="text-text font-semibold">Offertes</p>
-                <p className="text-text-muted text-sm">Professionele voorstellen</p>
+                <p className="text-text font-semibold">Missie Definitie</p>
+                <p className="text-text-muted text-sm">Levensdoel formuleren</p>
               </div>
             </div>
             <div className="flex items-center space-x-3 p-3 bg-surface rounded-xl">
-              <CreditCard className="w-6 h-6 text-primary-gold" />
+              <Lightbulb className="w-6 h-6 text-primary-blue" />
               <div>
-                <p className="text-text font-semibold">Facturering</p>
-                <p className="text-text-muted text-sm">Automatische facturen</p>
+                <p className="text-text font-semibold">Reflectie</p>
+                <p className="text-text-muted text-sm">Dagelijkse inzichten</p>
               </div>
             </div>
           </div>
-          <div className="bg-primary-gold/10 border border-primary-gold/20 rounded-xl p-4">
+          <div className="bg-primary-blue/10 border border-primary-blue/20 rounded-xl p-4">
             <p className="text-text-secondary">
-              <strong>Complete business suite:</strong> Van klant acquisitie tot betaling - alles in één platform.
+              <strong>Complete retraite ervaring:</strong> Van intake tot missie - alles voor jouw persoonlijke groei.
             </p>
           </div>
         </div>
       )
     },
     {
-      title: 'Klaar om te beginnen?',
-      subtitle: 'Start je VA-reis vandaag nog',
+      title: 'Klaar voor je retraite?',
+      subtitle: 'Start je persoonlijke groei vandaag nog',
       content: (
         <div className="text-center space-y-4">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary-gold to-primary-gold-dark rounded-full flex items-center justify-center mx-auto luxury-glow">
-            <Star className="w-8 h-8 text-black" />
+          <div className="w-16 h-16 bg-gradient-to-br from-primary-blue to-primary-blue-dark rounded-full flex items-center justify-center mx-auto luxury-glow">
+            <Star className="w-8 h-8 text-white" />
           </div>
           <p className="text-text-secondary text-lg">
-            Je hebt nu een overzicht van wat cursisten kunnen verwachten tijdens hun VA-opleiding.
+            Je hebt nu een overzicht van wat deelnemers kunnen verwachten tijdens hun retraite op Curaçao.
           </p>
-          <div className="bg-primary-gold/10 border border-primary-gold/20 rounded-xl p-4">
-            <p className="text-primary-gold font-semibold">
-              🚀 Van 0 tot professionele Virtual Assistant in 12 weken!
+          <div className="bg-primary-blue/10 border border-primary-blue/20 rounded-xl p-4">
+            <p className="text-primary-blue font-semibold">
+              🌊 7 dagen van zelfontdekking in het paradijs van Curaçao!
             </p>
           </div>
         </div>
@@ -229,7 +232,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
             </div>
             <div className="w-full bg-gray-700 rounded-full h-2">
               <div 
-                className="bg-gradient-to-r from-primary-gold to-primary-gold-dark h-2 rounded-full transition-all duration-300"
+                className="bg-gradient-to-r from-primary-blue to-primary-blue-dark h-2 rounded-full transition-all duration-300"
                 style={{ width: `${((currentStep + 1) / demoSteps.length) * 100}%` }}
               ></div>
             </div>
@@ -257,7 +260,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 <div
                   key={index}
                   className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentStep ? 'bg-primary-gold' : 'bg-gray-600'
+                    index === currentStep ? 'bg-primary-blue' : 'bg-gray-600'
                   }`}
                 />
               ))}
@@ -276,4 +279,3 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
     </div>
   )
 }
-

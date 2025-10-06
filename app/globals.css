@@ -10,34 +10,34 @@
   body {
     @apply bg-background text-text;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background-image: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.02) 0%, transparent 50%),
-                      radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
+    background-image: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.02) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.02) 0%, transparent 50%);
   }
 }
 
 @layer components {
   .glass-effect {
-    @apply bg-black/20 backdrop-blur-xl border border-primary-gold/20 shadow-2xl;
+    @apply bg-black/20 backdrop-blur-xl border border-primary-blue/20 shadow-2xl;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
-                0 0 0 1px rgba(255, 215, 0, 0.1),
-                inset 0 1px 0 rgba(255, 215, 0, 0.1);
+                0 0 0 1px rgba(59, 130, 246, 0.1),
+                inset 0 1px 0 rgba(59, 130, 246, 0.1);
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-gold to-primary-gold-dark hover:from-primary-gold-light hover:to-primary-gold text-black font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3),
-                0 0 20px rgba(255, 215, 0, 0.1);
+    @apply bg-gradient-to-r from-primary-blue to-primary-blue-dark hover:from-primary-blue-light hover:to-primary-blue text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3),
+                0 0 20px rgba(59, 130, 246, 0.1);
   }
   
   .input-field {
-    @apply w-full px-4 py-4 bg-surface border border-gray-700 rounded-xl text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-primary-gold transition-all duration-300;
+    @apply w-full px-4 py-4 bg-surface border border-gray-700 rounded-xl text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-primary-blue transition-all duration-300;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
   }
   
   .luxury-glow {
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.2),
-                0 0 60px rgba(255, 215, 0, 0.1);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2),
+                0 0 60px rgba(59, 130, 246, 0.1);
   }
   
   .floating-animation {
@@ -66,7 +66,7 @@
   
   
   .gold-shimmer {
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+    background: linear-gradient(45deg, transparent 30%, rgba(59, 130, 246, 0.1) 50%, transparent 70%);
     background-size: 200% 200%;
     animation: shimmer 3s ease-in-out infinite;
   }

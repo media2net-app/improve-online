@@ -1,4 +1,4 @@
-# Dorette - Moderne Login Pagina
+# Curacao Retraite - Moderne Login Pagina
 
 Een moderne, responsive login pagina gebouwd met Next.js 14, TypeScript en Tailwind CSS.
 

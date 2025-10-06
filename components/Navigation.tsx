@@ -6,18 +6,22 @@ import { usePathname } from 'next/navigation'
 import { 
   Crown, 
   Home, 
-  BookOpen, 
-  Trophy, 
+  Heart, 
+  Target, 
   User,
   Menu,
   X,
   LogOut,
   Settings,
   Bell,
-  Users,
   Calendar,
   FileText,
-  CreditCard
+  Lightbulb,
+  Compass,
+  Users,
+  Plane,
+  TrendingUp,
+  Package
 } from 'lucide-react'
 
 export default function Navigation() {
@@ -25,16 +29,35 @@ export default function Navigation() {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const pathname = usePathname()
 
-  const navigation = [
+  // Determine if user is admin based on current path
+  const isAdmin = pathname.startsWith('/admin')
+  
+  const deelnemerNavigation = [
     { name: 'Dashboard', href: '/dashboard', icon: Home },
-    { name: 'Academy', href: '/academy', icon: BookOpen },
-    { name: 'Klantbeheer', href: '/klanten', icon: Users },
-    { name: 'Agenda', href: '/agenda', icon: Calendar },
-    { name: 'Offertes', href: '/offertes', icon: FileText },
-    { name: 'Facturering', href: '/facturering', icon: CreditCard },
-    { name: 'Prestaties', href: '/prestaties', icon: Trophy },
+    { name: 'Intake', href: '/intake', icon: FileText },
+    { name: 'Persoonlijke Groei', href: '/groei', icon: Heart },
+    { name: 'Missie Definitie', href: '/missie', icon: Target },
+    { name: 'Programma', href: '/programma', icon: Calendar },
+    { name: 'Reflectie', href: '/reflectie', icon: Lightbulb },
+    { name: 'Voortgang', href: '/voortgang', icon: Compass },
     { name: 'Profiel', href: '/profiel', icon: User },
+    { name: 'Notificaties', href: '/notificaties', icon: Bell },
+    { name: 'Instellingen', href: '/instellingen', icon: Settings },
   ]
+
+  const adminNavigation = [
+    { name: 'Admin Dashboard', href: '/admin', icon: Home },
+    { name: 'Deelnemers', href: '/admin/deelnemers', icon: Users },
+    { name: 'Facturatie', href: '/admin/facturatie', icon: FileText },
+    { name: 'Vliegtickets', href: '/admin/vliegtickets', icon: Plane },
+    { name: 'Intakes', href: '/admin/intakes', icon: FileText },
+    { name: 'Voortgang', href: '/admin/voortgang', icon: TrendingUp },
+    { name: 'Logistiek', href: '/admin/logistiek', icon: Package },
+    { name: 'Notificaties', href: '/admin/notificaties', icon: Bell },
+    { name: 'Instellingen', href: '/admin/instellingen', icon: Settings },
+  ]
+
+  const navigation = isAdmin ? adminNavigation : deelnemerNavigation
 
   const isActive = (href: string) => pathname === href
 
@@ -47,12 +70,12 @@ export default function Navigation() {
         {/* Logo Section */}
         <div className="p-6 border-b border-gray-800">
           <Link href="/dashboard" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-gold to-primary-gold-dark rounded-xl flex items-center justify-center luxury-glow flex-shrink-0">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary-blue to-primary-blue-dark rounded-xl flex items-center justify-center luxury-glow flex-shrink-0">
               <Crown className="w-6 h-6 text-black" />
             </div>
             {!isCollapsed && (
               <div>
-                <h1 className="text-xl font-bold text-text">Dorette</h1>
+                <h1 className="text-xl font-bold text-text">Curacao Retraite</h1>
                 <p className="text-text-muted text-xs">Academy</p>
               </div>
             )}
@@ -70,7 +93,7 @@ export default function Navigation() {
                 onClick={() => setIsMobileOpen(false)}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
                   isActive(item.href)
-                    ? 'bg-primary-gold/20 text-primary-gold'
+                    ? 'bg-primary-blue/20 text-primary-blue'
                     : 'text-text-muted hover:text-text hover:bg-surface-light'
                 }`}
                 title={isCollapsed ? item.name : undefined}
@@ -98,7 +121,7 @@ export default function Navigation() {
             <Bell className="w-5 h-5 flex-shrink-0" />
             {!isCollapsed && <span className="font-medium">Notificaties</span>}
             {!isCollapsed && (
-              <div className="ml-auto w-2 h-2 bg-primary-gold rounded-full"></div>
+              <div className="ml-auto w-2 h-2 bg-primary-blue rounded-full"></div>
             )}
           </button>
 
@@ -114,16 +137,30 @@ export default function Navigation() {
           <div className={`flex items-center space-x-3 px-4 py-3 rounded-xl bg-surface-light ${
             isCollapsed ? 'justify-center' : ''
           }`}>
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-gold to-primary-gold-dark rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-black font-bold text-sm">S</span>
+            <div className="w-8 h-8 bg-gradient-to-br from-primary-blue to-primary-blue-dark rounded-full flex items-center justify-center flex-shrink-0">
+              <span className="text-white font-bold text-sm">{isAdmin ? 'J' : 'M'}</span>
             </div>
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-text font-medium text-sm">Sarah Johnson</p>
-                <p className="text-text-muted text-xs">Gemiddelde VA</p>
+                <p className="text-text font-medium text-sm">{isAdmin ? 'Jonnhy de Vries' : 'Maria Rodriguez'}</p>
+                <p className="text-text-muted text-xs">{isAdmin ? 'Retraite Begeleider' : 'Retraite Deelnemer'}</p>
               </div>
             )}
           </div>
+
+          {/* Admin Dashboard Link - Only show for deelnemers */}
+          {!isAdmin && (
+            <a 
+              href="/admin"
+              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-text-muted hover:text-primary-blue hover:bg-primary-blue/10 transition-all duration-200 mt-2 ${
+                isCollapsed ? 'justify-center' : ''
+              }`} 
+              title={isCollapsed ? 'Admin Dashboard' : undefined}
+            >
+              <Settings className="w-5 h-5 flex-shrink-0" />
+              {!isCollapsed && <span className="font-medium">Admin Dashboard</span>}
+            </a>
+          )}
 
           {/* Logout */}
           <button className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-text-muted hover:text-red-400 hover:bg-red-400/10 transition-all duration-200 mt-2 ${
