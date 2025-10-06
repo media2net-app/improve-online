@@ -18,99 +18,92 @@ import {
 } from 'lucide-react'
 
 export default function AdminDashboard() {
-  // Mock data voor deelnemers met betaling info
-  const deelnemers = [
+  // Mock data voor projecten
+  const projecten = [
     {
       id: 1,
-      naam: 'Maria Rodriguez',
-      email: 'maria@example.com',
-      status: 'bevestigd',
-      betaling: {
-        status: 'volledig_betaald',
-        bedrag: 4100,
-        betaald: 4100,
-        openstaand: 0,
-        aanbetaling: 1000,
-        resterend: 0,
-        laatsteBetaling: '2025-01-08'
-      }
+      naam: 'E-commerce Platform',
+      client: 'TechCorp BV',
+      status: 'actief',
+      budget: {
+        totaal: 25000,
+        gebruikt: 18000,
+        resterend: 7000,
+        percentage: 72
+      },
+      deadline: '2025-03-15',
+      team: ['Frontend Dev', 'Backend Dev', 'UI/UX Designer']
     },
     {
       id: 2,
-      naam: 'Sarah van der Berg',
-      email: 'sarah@example.com',
-      status: 'bevestigd',
-      betaling: {
-        status: 'aanbetaling_gedaan',
-        bedrag: 4100,
-        betaald: 1000,
-        openstaand: 3100,
-        aanbetaling: 1000,
-        resterend: 3100,
-        laatsteBetaling: '2025-01-05'
-      }
+      naam: 'Mobile App Development',
+      client: 'StartupXYZ',
+      status: 'actief',
+      budget: {
+        totaal: 15000,
+        gebruikt: 5000,
+        resterend: 10000,
+        percentage: 33
+      },
+      deadline: '2025-04-20',
+      team: ['React Native Dev', 'Backend Dev']
     },
     {
       id: 3,
-      naam: 'Michael Chen',
-      email: 'michael@example.com',
-      status: 'bevestigd',
-      betaling: {
-        status: 'volledig_betaald',
-        bedrag: 4100,
-        betaald: 4100,
-        openstaand: 0,
-        aanbetaling: 1000,
+      naam: 'Website Redesign',
+      client: 'MarketingPro',
+      status: 'voltooid',
+      budget: {
+        totaal: 8000,
+        gebruikt: 8000,
         resterend: 0,
-        laatsteBetaling: '2025-01-07'
-      }
+        percentage: 100
+      },
+      deadline: '2025-01-10',
+      team: ['Frontend Dev', 'UI/UX Designer']
     },
     {
       id: 4,
-      naam: 'Lisa Johnson',
-      email: 'lisa@example.com',
-      status: 'wachtlijst',
-      betaling: {
-        status: 'niet_betaald',
-        bedrag: 4100,
-        betaald: 0,
-        openstaand: 4100,
-        aanbetaling: 0,
-        resterend: 4100,
-        laatsteBetaling: null
-      }
+      naam: 'Database Migration',
+      client: 'DataFlow Inc',
+      status: 'planning',
+      budget: {
+        totaal: 12000,
+        gebruikt: 0,
+        resterend: 12000,
+        percentage: 0
+      },
+      deadline: '2025-05-01',
+      team: ['Database Admin', 'Backend Dev']
     },
     {
       id: 5,
-      naam: 'Emma Thompson',
-      email: 'emma@example.com',
-      status: 'geannuleerd',
-      betaling: {
-        status: 'terugbetaald',
-        bedrag: 4100,
-        betaald: 0,
-        openstaand: 0,
-        aanbetaling: 1000,
-        resterend: 0,
-        laatsteBetaling: '2025-01-03'
-      }
+      naam: 'API Integration',
+      client: 'ServiceHub',
+      status: 'on_hold',
+      budget: {
+        totaal: 6000,
+        gebruikt: 2000,
+        resterend: 4000,
+        percentage: 33
+      },
+      deadline: '2025-02-28',
+      team: ['Backend Dev', 'DevOps Engineer']
     }
   ]
 
-  // Bereken financiële statistieken
+  // Bereken project statistieken
   const stats = {
-    totaalDeelnemers: deelnemers.filter(d => d.status !== 'geannuleerd').length,
-    bevestigd: deelnemers.filter(d => d.status === 'bevestigd').length,
-    wachtlijst: deelnemers.filter(d => d.status === 'wachtlijst').length,
-    geannuleerd: deelnemers.filter(d => d.status === 'geannuleerd').length,
-    vliegticketsGeboekt: deelnemers.filter(d => d.status === 'bevestigd').length,
-    // Financiële stats
-    totaleOmzet: deelnemers.reduce((acc, d) => acc + d.betaling.bedrag, 0),
-    betaaldTotaal: deelnemers.reduce((acc, d) => acc + d.betaling.betaald, 0),
-    openstaandTotaal: deelnemers.reduce((acc, d) => acc + d.betaling.openstaand, 0),
-    volledigBetaald: deelnemers.filter(d => d.betaling.status === 'volledig_betaald').length,
-    aanbetalingGedaan: deelnemers.filter(d => d.betaling.status === 'aanbetaling_gedaan').length,
-    nietBetaald: deelnemers.filter(d => d.betaling.status === 'niet_betaald').length
+    totaalProjecten: projecten.length,
+    actief: projecten.filter(p => p.status === 'actief').length,
+    voltooid: projecten.filter(p => p.status === 'voltooid').length,
+    planning: projecten.filter(p => p.status === 'planning').length,
+    onHold: projecten.filter(p => p.status === 'on_hold').length,
+    // Budget stats
+    totaalBudget: projecten.reduce((acc, p) => acc + p.budget.totaal, 0),
+    gebruiktBudget: projecten.reduce((acc, p) => acc + p.budget.gebruikt, 0),
+    resterendBudget: projecten.reduce((acc, p) => acc + p.budget.resterend, 0),
+    gemiddeldeVoortgang: Math.round(projecten.reduce((acc, p) => acc + p.budget.percentage, 0) / projecten.length)
   }
 
   return (
@@ -124,16 +117,16 @@ export default function AdminDashboard() {
           <div className="px-6 py-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-2xl font-bold text-text">Admin Dashboard</h1>
-                <p className="text-text-muted">Beheer van Curacao Retraite 2025</p>
+                <h1 className="text-2xl font-bold text-white">Improve Admin Dashboard</h1>
+                <p className="text-gray-400">Project Management Platform</p>
               </div>
               <div className="flex items-center space-x-4">
                 <div className="text-right">
-                  <p className="text-text font-medium">Jonnhy de Vries</p>
-                  <p className="text-text-muted text-sm">Retraite Begeleider</p>
+                  <p className="text-white font-medium">Chiel</p>
+                  <p className="text-gray-400 text-sm">Project Manager</p>
                 </div>
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-blue to-primary-blue-dark rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">J</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-silver to-gray-300 rounded-full flex items-center justify-center">
+                  <span className="text-black font-bold text-lg">C</span>
                 </div>
               </div>
             </div>
@@ -141,14 +134,14 @@ export default function AdminDashboard() {
         </header>
 
         <div className="px-6 py-8">
-          {/* Financiële Stats */}
+          {/* Project Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div className="glass-effect rounded-2xl p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-text-muted text-sm">Totale Omzet</p>
-                  <p className="text-3xl font-bold text-green-400">€{stats.totaleOmzet.toLocaleString()}</p>
-                  <p className="text-text-muted text-xs mt-1">€4.100 per deelnemer</p>
+                  <p className="text-gray-400 text-sm">Totaal Budget</p>
+                  <p className="text-3xl font-bold text-green-400">€{stats.totaalBudget.toLocaleString()}</p>
+                  <p className="text-gray-400 text-xs mt-1">Alle projecten</p>
                 </div>
                 <Euro className="w-12 h-12 text-green-400" />
               </div>
@@ -157,9 +150,9 @@ export default function AdminDashboard() {
             <div className="glass-effect rounded-2xl p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-text-muted text-sm">Betaald Totaal</p>
-                  <p className="text-3xl font-bold text-blue-400">€{stats.betaaldTotaal.toLocaleString()}</p>
-                  <p className="text-text-muted text-xs mt-1">{Math.round((stats.betaaldTotaal / stats.totaleOmzet) * 100)}% van omzet</p>
+                  <p className="text-gray-400 text-sm">Gebruikt Budget</p>
+                  <p className="text-3xl font-bold text-blue-400">€{stats.gebruiktBudget.toLocaleString()}</p>
+                  <p className="text-gray-400 text-xs mt-1">{Math.round((stats.gebruiktBudget / stats.totaalBudget) * 100)}% gebruikt</p>
                 </div>
                 <CreditCard className="w-12 h-12 text-blue-400" />
               </div>
@@ -168,58 +161,58 @@ export default function AdminDashboard() {
             <div className="glass-effect rounded-2xl p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-text-muted text-sm">Openstaand</p>
-                  <p className="text-3xl font-bold text-red-400">€{stats.openstaandTotaal.toLocaleString()}</p>
-                  <p className="text-text-muted text-xs mt-1">{stats.aanbetalingGedaan + stats.nietBetaald} deelnemers</p>
+                  <p className="text-gray-400 text-sm">Resterend Budget</p>
+                  <p className="text-3xl font-bold text-silver">€{stats.resterendBudget.toLocaleString()}</p>
+                  <p className="text-gray-400 text-xs mt-1">Beschikbaar</p>
                 </div>
-                <AlertCircle className="w-12 h-12 text-red-400" />
+                <AlertCircle className="w-12 h-12 text-silver" />
               </div>
             </div>
 
             <div className="glass-effect rounded-2xl p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-text-muted text-sm">Volledig Betaald</p>
-                  <p className="text-3xl font-bold text-green-400">{stats.volledigBetaald}</p>
-                  <p className="text-text-muted text-xs mt-1">van {stats.bevestigd} bevestigde</p>
+                  <p className="text-gray-400 text-sm">Gemiddelde Voortgang</p>
+                  <p className="text-3xl font-bold text-green-400">{stats.gemiddeldeVoortgang}%</p>
+                  <p className="text-gray-400 text-xs mt-1">Alle projecten</p>
                 </div>
                 <CheckCircle className="w-12 h-12 text-green-400" />
               </div>
             </div>
           </div>
 
-          {/* Deelnemer Stats */}
+          {/* Project Status Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div className="glass-effect rounded-2xl p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-text-muted text-sm">Bevestigde Deelnemers</p>
-                  <p className="text-3xl font-bold text-text">{stats.bevestigd}</p>
-                  <p className="text-text-muted text-xs mt-1">van {stats.totaalDeelnemers} totaal</p>
+                  <p className="text-gray-400 text-sm">Actieve Projecten</p>
+                  <p className="text-3xl font-bold text-white">{stats.actief}</p>
+                  <p className="text-gray-400 text-xs mt-1">van {stats.totaalProjecten} totaal</p>
                 </div>
-                <Users className="w-12 h-12 text-primary-blue" />
+                <Users className="w-12 h-12 text-silver" />
               </div>
             </div>
 
             <div className="glass-effect rounded-2xl p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-text-muted text-sm">Wachtlijst</p>
-                  <p className="text-3xl font-bold text-yellow-400">{stats.wachtlijst}</p>
-                  <p className="text-text-muted text-xs mt-1">Wachten op plek</p>
+                  <p className="text-gray-400 text-sm">Voltooide Projecten</p>
+                  <p className="text-3xl font-bold text-green-400">{stats.voltooid}</p>
+                  <p className="text-gray-400 text-xs mt-1">Succesvol afgerond</p>
+                </div>
+                <CheckCircle className="w-12 h-12 text-green-400" />
+              </div>
+            </div>
+
+            <div className="glass-effect rounded-2xl p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-gray-400 text-sm">In Planning</p>
+                  <p className="text-3xl font-bold text-yellow-400">{stats.planning}</p>
+                  <p className="text-gray-400 text-xs mt-1">Wachten op start</p>
                 </div>
                 <Clock className="w-12 h-12 text-yellow-400" />
-              </div>
-            </div>
-
-            <div className="glass-effect rounded-2xl p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-text-muted text-sm">Vliegtickets</p>
-                  <p className="text-3xl font-bold text-blue-400">{stats.vliegticketsGeboekt}</p>
-                  <p className="text-text-muted text-xs mt-1">Geboekt voor retraite</p>
-                </div>
-                <Plane className="w-12 h-12 text-blue-400" />
               </div>
             </div>
           </div>
@@ -227,15 +220,15 @@ export default function AdminDashboard() {
           {/* Recent Activity */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="glass-effect rounded-2xl p-6">
-              <h3 className="text-xl font-bold text-text mb-4">Recente Activiteiten</h3>
+              <h3 className="text-xl font-bold text-white mb-4">Recente Activiteiten</h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
                     <CheckCircle className="w-4 h-4 text-green-400" />
                   </div>
                   <div>
-                    <p className="text-text font-medium">Maria Rodriguez heeft Module 2 voltooid</p>
-                    <p className="text-text-muted text-sm">2 uur geleden</p>
+                    <p className="text-white font-medium">Website Redesign project voltooid</p>
+                    <p className="text-gray-400 text-sm">2 uur geleden</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -243,8 +236,8 @@ export default function AdminDashboard() {
                     <FileText className="w-4 h-4 text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-text font-medium">Nieuwe intake ingediend door Lisa Johnson</p>
-                    <p className="text-text-muted text-sm">4 uur geleden</p>
+                    <p className="text-white font-medium">Nieuwe project toegevoegd: Database Migration</p>
+                    <p className="text-gray-400 text-sm">4 uur geleden</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -252,8 +245,8 @@ export default function AdminDashboard() {
                     <AlertCircle className="w-4 h-4 text-yellow-400" />
                   </div>
                   <div>
-                    <p className="text-text font-medium">Emma Thompson heeft retraite geannuleerd</p>
-                    <p className="text-text-muted text-sm">1 dag geleden</p>
+                    <p className="text-white font-medium">API Integration project on hold gezet</p>
+                    <p className="text-gray-400 text-sm">1 dag geleden</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -261,111 +254,119 @@ export default function AdminDashboard() {
                     <CreditCard className="w-4 h-4 text-green-400" />
                   </div>
                   <div>
-                    <p className="text-text font-medium">Betaling ontvangen van Michael Chen</p>
-                    <p className="text-text-muted text-sm">2 dagen geleden</p>
+                    <p className="text-white font-medium">Betaling ontvangen voor E-commerce Platform</p>
+                    <p className="text-gray-400 text-sm">2 dagen geleden</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="glass-effect rounded-2xl p-6">
-              <h3 className="text-xl font-bold text-text mb-4">Voortgang Overzicht</h3>
+              <h3 className="text-xl font-bold text-white mb-4">Project Voortgang</h3>
               <div className="space-y-4">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-text font-medium">Module 1: Zelfkennis</span>
-                    <span className="text-text-muted text-sm">4/5 voltooid</span>
+                {projecten.slice(0, 4).map((project) => (
+                  <div key={project.id}>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-white font-medium">{project.naam}</span>
+                      <span className="text-gray-400 text-sm">{project.budget.percentage}%</span>
+                    </div>
+                    <div className="w-full bg-gray-700 rounded-full h-2">
+                      <div 
+                        className={`h-2 rounded-full ${
+                          project.budget.percentage >= 80 ? 'bg-green-400' :
+                          project.budget.percentage >= 50 ? 'bg-blue-400' :
+                          project.budget.percentage >= 25 ? 'bg-yellow-400' :
+                          'bg-gray-500'
+                        }`}
+                        style={{ width: `${project.budget.percentage}%` }}
+                      ></div>
+                    </div>
+                    <div className="flex justify-between text-xs text-gray-400 mt-1">
+                      <span>{project.client}</span>
+                      <span>€{project.budget.gebruikt.toLocaleString()} / €{project.budget.totaal.toLocaleString()}</span>
+                    </div>
                   </div>
-                  <div className="w-full bg-gray-700 rounded-full h-2">
-                    <div className="bg-primary-blue h-2 rounded-full" style={{ width: '80%' }}></div>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-text font-medium">Module 2: Emotionele Intelligentie</span>
-                    <span className="text-text-muted text-sm">2/5 voltooid</span>
-                  </div>
-                  <div className="w-full bg-gray-700 rounded-full h-2">
-                    <div className="bg-primary-blue h-2 rounded-full" style={{ width: '40%' }}></div>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-text font-medium">Module 3: Mindfulness</span>
-                    <span className="text-text-muted text-sm">1/5 voltooid</span>
-                  </div>
-                  <div className="w-full bg-gray-700 rounded-full h-2">
-                    <div className="bg-primary-blue h-2 rounded-full" style={{ width: '20%' }}></div>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-text font-medium">Module 4: Communicatie</span>
-                    <span className="text-text-muted text-sm">0/5 voltooid</span>
-                  </div>
-                  <div className="w-full bg-gray-700 rounded-full h-2">
-                    <div className="bg-primary-blue h-2 rounded-full" style={{ width: '0%' }}></div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Betalingsoverzicht */}
+          {/* Project Overzicht */}
           <div className="glass-effect rounded-2xl p-6 mt-8">
-            <h3 className="text-xl font-bold text-text mb-6">Betalingsoverzicht per Deelnemer</h3>
+            <h3 className="text-xl font-bold text-white mb-6">Project Overzicht</h3>
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-surface border-b border-gray-700">
+                <thead className="bg-gray-800/50 border-b border-gray-700">
                   <tr>
-                    <th className="text-left p-4 text-text font-medium">Deelnemer</th>
-                    <th className="text-left p-4 text-text font-medium">Status</th>
-                    <th className="text-left p-4 text-text font-medium">Totaal Bedrag</th>
-                    <th className="text-left p-4 text-text font-medium">Betaald</th>
-                    <th className="text-left p-4 text-text font-medium">Openstaand</th>
-                    <th className="text-left p-4 text-text font-medium">Laatste Betaling</th>
-                    <th className="text-left p-4 text-text font-medium">Acties</th>
+                    <th className="text-left p-4 text-white font-medium">Project</th>
+                    <th className="text-left p-4 text-white font-medium">Client</th>
+                    <th className="text-left p-4 text-white font-medium">Status</th>
+                    <th className="text-left p-4 text-white font-medium">Budget</th>
+                    <th className="text-left p-4 text-white font-medium">Voortgang</th>
+                    <th className="text-left p-4 text-white font-medium">Deadline</th>
+                    <th className="text-left p-4 text-white font-medium">Team</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {deelnemers.filter(d => d.status !== 'geannuleerd').map((deelnemer) => (
-                    <tr key={deelnemer.id} className="border-b border-gray-700 hover:bg-surface-light transition-colors">
+                  {projecten.map((project) => (
+                    <tr key={project.id} className="border-b border-gray-700 hover:bg-gray-800/30 transition-colors">
                       <td className="p-4">
                         <div>
-                          <p className="text-text font-medium">{deelnemer.naam}</p>
-                          <p className="text-text-muted text-sm">{deelnemer.email}</p>
+                          <p className="text-white font-medium">{project.naam}</p>
                         </div>
                       </td>
                       <td className="p-4">
+                        <span className="text-gray-300">{project.client}</span>
+                      </td>
+                      <td className="p-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          deelnemer.betaling.status === 'volledig_betaald' ? 'bg-green-500/20 text-green-400' :
-                          deelnemer.betaling.status === 'aanbetaling_gedaan' ? 'bg-yellow-500/20 text-yellow-400' :
-                          deelnemer.betaling.status === 'niet_betaald' ? 'bg-red-500/20 text-red-400' :
+                          project.status === 'actief' ? 'bg-green-500/20 text-green-400' :
+                          project.status === 'voltooid' ? 'bg-blue-500/20 text-blue-400' :
+                          project.status === 'planning' ? 'bg-yellow-500/20 text-yellow-400' :
+                          project.status === 'on_hold' ? 'bg-red-500/20 text-red-400' :
                           'bg-gray-500/20 text-gray-400'
                         }`}>
-                          {deelnemer.betaling.status.replace('_', ' ')}
+                          {project.status.replace('_', ' ')}
                         </span>
                       </td>
                       <td className="p-4">
-                        <span className="text-text font-medium">€{deelnemer.betaling.bedrag.toLocaleString()}</span>
+                        <div>
+                          <span className="text-white font-medium">€{project.budget.totaal.toLocaleString()}</span>
+                          <p className="text-gray-400 text-xs">€{project.budget.gebruikt.toLocaleString()} gebruikt</p>
+                        </div>
                       </td>
                       <td className="p-4">
-                        <span className="text-green-400 font-medium">€{deelnemer.betaling.betaald.toLocaleString()}</span>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-16 bg-gray-700 rounded-full h-2">
+                            <div 
+                              className={`h-2 rounded-full ${
+                                project.budget.percentage >= 80 ? 'bg-green-400' :
+                                project.budget.percentage >= 50 ? 'bg-blue-400' :
+                                project.budget.percentage >= 25 ? 'bg-yellow-400' :
+                                'bg-gray-500'
+                              }`}
+                              style={{ width: `${project.budget.percentage}%` }}
+                            ></div>
+                          </div>
+                          <span className="text-gray-300 text-sm">{project.budget.percentage}%</span>
+                        </div>
                       </td>
                       <td className="p-4">
-                        <span className="text-red-400 font-medium">€{deelnemer.betaling.openstaand.toLocaleString()}</span>
+                        <span className="text-gray-300 text-sm">{project.deadline}</span>
                       </td>
                       <td className="p-4">
-                        <span className="text-text-muted text-sm">
-                          {deelnemer.betaling.laatsteBetaling || 'Nog niet betaald'}
-                        </span>
-                      </td>
-                      <td className="p-4">
-                        {deelnemer.betaling.openstaand > 0 && (
-                          <button className="px-3 py-1 bg-primary-blue text-white rounded-lg hover:bg-primary-blue-dark transition-colors text-sm">
-                            Herinnering Sturen
-                          </button>
-                        )}
+                        <div className="flex flex-wrap gap-1">
+                          {project.team.slice(0, 2).map((member, index) => (
+                            <span key={index} className="px-2 py-1 bg-gray-700 text-gray-300 rounded text-xs">
+                              {member}
+                            </span>
+                          ))}
+                          {project.team.length > 2 && (
+                            <span className="px-2 py-1 bg-gray-700 text-gray-300 rounded text-xs">
+                              +{project.team.length - 2}
+                            </span>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -374,60 +375,64 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          {/* Prijs Informatie */}
+          {/* Project Informatie */}
           <div className="glass-effect rounded-2xl p-6 mt-8">
-            <h3 className="text-xl font-bold text-text mb-6">Retraite Prijs Informatie</h3>
+            <h3 className="text-xl font-bold text-white mb-6">Project Management Informatie</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div>
-                <h4 className="text-lg font-bold text-text mb-4">Inbegrepen in de Prijs</h4>
+                <h4 className="text-lg font-bold text-white mb-4">Onze Diensten</h4>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400" />
-                    <span className="text-text">7-daagse retraite op Curaçao</span>
+                    <span className="text-white">Web Development</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400" />
-                    <span className="text-text">Verblijf in eigen appartement (Morena Resort)</span>
+                    <span className="text-white">Mobile App Development</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400" />
-                    <span className="text-text">Alle maaltijden (ontbijt, lunch, diner)</span>
+                    <span className="text-white">UI/UX Design</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400" />
-                    <span className="text-text">Professionele begeleiding door Jonnhy</span>
+                    <span className="text-white">Database Management</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400" />
-                    <span className="text-text">Alle activiteiten en excursies</span>
+                    <span className="text-white">API Development</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400" />
-                    <span className="text-text">Vliegticket (indicatief €900)</span>
+                    <span className="text-white">DevOps & Deployment</span>
                   </div>
                 </div>
               </div>
               <div>
-                <h4 className="text-lg font-bold text-text mb-4">Prijs Structuur</h4>
-                <div className="bg-surface border border-gray-700 rounded-xl p-4">
+                <h4 className="text-lg font-bold text-white mb-4">Project Statistieken</h4>
+                <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-4">
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-text-muted">Retraite op Curaçao</span>
-                      <span className="text-text font-medium">€4.300</span>
+                      <span className="text-gray-300">Totaal Projecten</span>
+                      <span className="text-white font-medium">{stats.totaalProjecten}</span>
                     </div>
-                    <div className="flex justify-between text-green-400">
-                      <span>Earlybird korting (vóór 15 jan 2025)</span>
-                      <span className="font-medium">-€200</span>
+                    <div className="flex justify-between">
+                      <span className="text-gray-300">Actieve Projecten</span>
+                      <span className="text-green-400 font-medium">{stats.actief}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-300">Voltooide Projecten</span>
+                      <span className="text-blue-400 font-medium">{stats.voltooid}</span>
                     </div>
                     <div className="border-t border-gray-700 pt-3 flex justify-between">
-                      <span className="text-text font-bold">Totaal per deelnemer</span>
-                      <span className="text-primary-blue font-bold text-lg">€4.100</span>
+                      <span className="text-white font-bold">Totaal Budget</span>
+                      <span className="text-silver font-bold text-lg">€{stats.totaalBudget.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
-                <div className="mt-4 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
-                  <p className="text-yellow-400 text-sm">
-                    <strong>Betaling:</strong> Aanbetaling van €1.000 bij boeking, resterend bedrag uiterlijk 30 dagen voor vertrek.
+                <div className="mt-4 p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                  <p className="text-blue-400 text-sm">
+                    <strong>Improve:</strong> Professional project management met focus op kwaliteit en efficiëntie.
                   </p>
                 </div>
               </div>

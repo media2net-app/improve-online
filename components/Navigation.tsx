@@ -21,7 +21,9 @@ import {
   Users,
   Plane,
   TrendingUp,
-  Package
+  Package,
+  Github,
+  BarChart3
 } from 'lucide-react'
 
 export default function Navigation() {
@@ -47,14 +49,12 @@ export default function Navigation() {
 
   const adminNavigation = [
     { name: 'Admin Dashboard', href: '/admin', icon: Home },
-    { name: 'Deelnemers', href: '/admin/deelnemers', icon: Users },
-    { name: 'Facturatie', href: '/admin/facturatie', icon: FileText },
-    { name: 'Vliegtickets', href: '/admin/vliegtickets', icon: Plane },
-    { name: 'Intakes', href: '/admin/intakes', icon: FileText },
-    { name: 'Voortgang', href: '/admin/voortgang', icon: TrendingUp },
-    { name: 'Logistiek', href: '/admin/logistiek', icon: Package },
-    { name: 'Notificaties', href: '/admin/notificaties', icon: Bell },
-    { name: 'Instellingen', href: '/admin/instellingen', icon: Settings },
+    { name: 'GitHub Projects', href: '/github', icon: Github },
+    { name: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
+    { name: 'Project Management', href: '/admin/projects', icon: Package },
+    { name: 'Team Members', href: '/admin/team', icon: Users },
+    { name: 'Reports', href: '/admin/reports', icon: FileText },
+    { name: 'Settings', href: '/admin/settings', icon: Settings },
   ]
 
   const navigation = isAdmin ? adminNavigation : deelnemerNavigation
@@ -68,15 +68,15 @@ export default function Navigation() {
         isCollapsed ? 'w-16' : 'w-64'
       } ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
         {/* Logo Section */}
-        <div className="p-6 border-b border-gray-800">
-          <Link href="/dashboard" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-blue to-primary-blue-dark rounded-xl flex items-center justify-center luxury-glow flex-shrink-0">
+        <div className="p-6 border-b border-gray-700">
+          <Link href={isAdmin ? "/admin" : "/dashboard"} className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-silver to-gray-300 rounded-xl flex items-center justify-center luxury-glow flex-shrink-0">
               <Crown className="w-6 h-6 text-black" />
             </div>
             {!isCollapsed && (
               <div>
-                <h1 className="text-xl font-bold text-text">Curacao Retraite</h1>
-                <p className="text-text-muted text-xs">Academy</p>
+                <h1 className="text-xl font-bold text-white">IMPROVE</h1>
+                <p className="text-gray-400 text-xs">Project Management</p>
               </div>
             )}
           </Link>
@@ -93,8 +93,8 @@ export default function Navigation() {
                 onClick={() => setIsMobileOpen(false)}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
                   isActive(item.href)
-                    ? 'bg-primary-blue/20 text-primary-blue'
-                    : 'text-text-muted hover:text-text hover:bg-surface-light'
+                    ? 'bg-silver/20 text-silver'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
                 }`}
                 title={isCollapsed ? item.name : undefined}
               >
@@ -134,16 +134,16 @@ export default function Navigation() {
           </button>
 
           {/* User Profile */}
-          <div className={`flex items-center space-x-3 px-4 py-3 rounded-xl bg-surface-light ${
+          <div className={`flex items-center space-x-3 px-4 py-3 rounded-xl bg-gray-800/50 ${
             isCollapsed ? 'justify-center' : ''
           }`}>
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-blue to-primary-blue-dark rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-sm">{isAdmin ? 'J' : 'M'}</span>
+            <div className="w-8 h-8 bg-gradient-to-br from-silver to-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+              <span className="text-black font-bold text-sm">C</span>
             </div>
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-text font-medium text-sm">{isAdmin ? 'Jonnhy de Vries' : 'Maria Rodriguez'}</p>
-                <p className="text-text-muted text-xs">{isAdmin ? 'Retraite Begeleider' : 'Retraite Deelnemer'}</p>
+                <p className="text-white font-medium text-sm">Chiel</p>
+                <p className="text-gray-400 text-xs">Project Manager</p>
               </div>
             )}
           </div>

@@ -19,6 +19,7 @@ module.exports = {
         text: '#FFFFFF',
         'text-secondary': '#CCCCCC',
         'text-muted': '#999999',
+        silver: '#C0C0C0',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
