@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-800;
+  }
+  
+  body {
+    @apply bg-background text-text;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background-image: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.02) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-black/20 backdrop-blur-xl border border-primary-gold/20 shadow-2xl;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
+                0 0 0 1px rgba(255, 215, 0, 0.1),
+                inset 0 1px 0 rgba(255, 215, 0, 0.1);
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-gold to-primary-gold-dark hover:from-primary-gold-light hover:to-primary-gold text-black font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3),
+                0 0 20px rgba(255, 215, 0, 0.1);
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-4 bg-surface border border-gray-700 rounded-xl text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-primary-gold transition-all duration-300;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .luxury-glow {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.2),
+                0 0 60px rgba(255, 215, 0, 0.1);
+  }
+  
+  .floating-animation {
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  .floating-star {
+    animation: floatStar 6s ease-in-out infinite;
+  }
+  
+  .react-bit {
+    animation: reactFloat 4s ease-in-out infinite;
+  }
+  
+  .react-atom {
+    animation: reactSpin 3s linear infinite;
+  }
+  
+  .react-component {
+    animation: reactSlide 8s linear infinite;
+  }
+  
+  .sparkle-star {
+    animation: sparkle 4s ease-in-out infinite;
+  }
+  
+  
+  .gold-shimmer {
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+    background-size: 200% 200%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-15px) rotate(1deg);
+    }
+    66% {
+      transform: translateY(-10px) rotate(-1deg);
+    }
+  }
+  
+  @keyframes floatStar {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    25% {
+      transform: translateY(-10px) rotate(90deg) scale(1.1);
+    }
+    50% {
+      transform: translateY(-5px) rotate(180deg) scale(0.9);
+    }
+    75% {
+      transform: translateY(-15px) rotate(270deg) scale(1.05);
+    }
+  }
+  
+  @keyframes reactFloat {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg) scale(1);
+      opacity: 0.8;
+    }
+    25% {
+      transform: translateY(-20px) rotate(90deg) scale(1.2);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-15px) rotate(180deg) scale(0.9);
+      opacity: 0.9;
+    }
+    75% {
+      transform: translateY(-25px) rotate(270deg) scale(1.1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes reactSpin {
+    0% {
+      transform: rotate(0deg) scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: rotate(180deg) scale(1.3);
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+      opacity: 0.7;
+    }
+  }
+  
+  @keyframes reactSlide {
+    0% {
+      transform: translateX(-150px) translateY(0px);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(calc(100vw + 150px)) translateY(-30px);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes sparkle {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2) rotate(180deg);
+    }
+  }
+  
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+}
