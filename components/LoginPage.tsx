@@ -17,7 +17,7 @@ type LoginFormData = z.infer<typeof loginSchema>
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [userRole, setUserRole] = useState<'deelnemer' | 'admin'>('deelnemer')
+  const [userRole, setUserRole] = useState<'admin'>('admin')
 
   const {
     register,
@@ -28,35 +28,22 @@ export default function LoginPage() {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: 'deelnemer@curacao-retraite.com',
-      password: 'retraite2024',
+      email: 'chiel@improve.onl',
+      password: 'improve2024',
       rememberMe: true
     }
   })
-
-  // Update credentials when role changes
-  React.useEffect(() => {
-    if (userRole === 'admin') {
-      setValue('email', 'admin@curacao-retraite.com')
-      setValue('password', 'admin2024')
-    } else {
-      setValue('email', 'deelnemer@curacao-retraite.com')
-      setValue('password', 'retraite2024')
-    }
-  }, [userRole, setValue])
 
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true)
     // Simuleer API call
     await new Promise(resolve => setTimeout(resolve, 2000))
     
-    // Demo login - redirect naar juiste dashboard
-    if (data.email === 'deelnemer@curacao-retraite.com' && data.password === 'retraite2024') {
-      window.location.href = '/dashboard'
-    } else if (data.email === 'admin@curacao-retraite.com' && data.password === 'admin2024') {
+    // Admin login - redirect naar admin dashboard
+    if (data.email === 'chiel@improve.onl' && data.password === 'improve2024') {
       window.location.href = '/admin'
     } else {
-      alert(`Demo login:\nDeelnemer: deelnemer@curacao-retraite.com / retraite2024\nAdmin: admin@curacao-retraite.com / admin2024`)
+      alert(`Admin login:\nEmail: chiel@improve.onl\nPassword: improve2024`)
     }
     
     setIsLoading(false)
@@ -72,62 +59,24 @@ export default function LoginPage() {
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md">
           {/* Logo/Brand */}
-          <div className="text-center mb-4 animate-fade-in">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-primary-blue to-primary-blue-dark rounded-xl mb-3 luxury-glow">
-              <Crown className="w-6 h-6 text-white" />
+          <div className="text-center mb-8 animate-fade-in">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-silver to-gray-300 rounded-2xl mb-4 luxury-glow shadow-2xl">
+              <Crown className="w-8 h-8 text-black" />
             </div>
-              <h1 className="text-2xl font-bold text-text mb-1 bg-gradient-to-r from-text to-primary-blue bg-clip-text text-transparent">
-                Curacao Retraite
+              <h1 className="text-3xl font-bold text-white mb-2 bg-gradient-to-r from-silver to-white bg-clip-text text-transparent">
+                IMPROVE
               </h1>
-              <p className="text-text-secondary text-sm">Persoonlijke groei en missie herdefiniëren</p>
+              <p className="text-gray-400 text-sm font-medium">Project Management Platform</p>
           </div>
 
-          {/* Role Switcher */}
-          <div className="glass-effect rounded-xl p-4 mb-4">
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={() => setUserRole('deelnemer')}
-                className={`p-3 rounded-lg border-2 transition-all duration-200 ${
-                  userRole === 'deelnemer'
-                    ? 'border-primary-blue bg-primary-blue/10'
-                    : 'border-gray-700 hover:border-gray-600'
-                }`}
-              >
-                <div className="text-center">
-                  <div className={`w-8 h-8 mx-auto mb-2 rounded-full flex items-center justify-center ${
-                    userRole === 'deelnemer' ? 'bg-primary-blue' : 'bg-gray-700'
-                  }`}>
-                    <GraduationCap className="w-4 h-4 text-white" />
-                  </div>
-                  <h4 className="font-medium text-text text-sm">Deelnemer</h4>
-                </div>
-              </button>
-              
-              <button
-                type="button"
-                onClick={() => setUserRole('admin')}
-                className={`p-3 rounded-lg border-2 transition-all duration-200 ${
-                  userRole === 'admin'
-                    ? 'border-primary-blue bg-primary-blue/10'
-                    : 'border-gray-700 hover:border-gray-600'
-                }`}
-              >
-                <div className="text-center">
-                  <div className={`w-8 h-8 mx-auto mb-2 rounded-full flex items-center justify-center ${
-                    userRole === 'admin' ? 'bg-primary-blue' : 'bg-gray-700'
-                  }`}>
-                    <Crown className="w-4 h-4 text-white" />
-                  </div>
-                  <h4 className="font-medium text-text text-sm">Admin</h4>
-                </div>
-              </button>
-            </div>
-            
-            <div className="mt-3 p-2 bg-primary-blue/10 border border-primary-blue/20 rounded-lg">
-              <p className="text-primary-blue text-xs text-center">
-                {userRole === 'deelnemer' ? 'Deelnemer geselecteerd' : 'Admin geselecteerd'}
-              </p>
+          {/* Admin Access */}
+          <div className="glass-effect rounded-xl p-4 mb-6">
+            <div className="text-center">
+              <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-br from-silver to-gray-300 flex items-center justify-center">
+                <Crown className="w-6 h-6 text-black" />
+              </div>
+              <h3 className="text-white font-semibold mb-1">Admin Access</h3>
+              <p className="text-gray-400 text-sm">Project Management Dashboard</p>
             </div>
           </div>
 
@@ -212,7 +161,7 @@ export default function LoginPage() {
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 ) : (
                   <>
-                    <span>🚀 {userRole === 'deelnemer' ? 'Start Retraite' : 'Admin Dashboard'}</span>
+                    <span>🚀 Access Admin Dashboard</span>
                     <ArrowRight className="w-5 h-5" />
                   </>
                 )}
@@ -231,26 +180,23 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Social Login */}
+            {/* Demo Access */}
             <div className="space-y-3">
-              <button className="w-full flex items-center justify-center px-4 py-4 border border-gray-700 rounded-xl text-text hover:bg-surface-light transition-all duration-300 hover:border-primary-blue/30">
-                <GraduationCap className="w-5 h-5 mr-3 text-primary-blue" />
-                <span className="font-medium">{userRole === 'deelnemer' ? 'Retraite Demo' : 'Admin Demo'}</span>
+              <button className="w-full flex items-center justify-center px-4 py-4 border border-gray-600 rounded-xl text-white hover:bg-gray-800/50 transition-all duration-300 hover:border-silver/30">
+                <Crown className="w-5 h-5 mr-3 text-silver" />
+                <span className="font-medium">Admin Demo Access</span>
               </button>
             </div>
 
-            {/* Sign Up Link */}
+            {/* Footer */}
             <div className="mt-8 text-center">
-              <p className="text-text-secondary">
-                Nog geen account?{' '}
-                <a href="#" className="text-primary-blue hover:text-primary-blue/80 transition-colors font-semibold">
-                  Start je VA reis
-                </a>
+              <p className="text-gray-400 text-sm">
+                Improve Project Management Platform
               </p>
-              <div className="mt-4 flex items-center justify-center space-x-2 text-text-muted text-sm">
-                <Star className="w-4 h-4 text-primary-blue" />
-                <span>Premium Virtual Assistant Training</span>
-                <Star className="w-4 h-4 text-primary-blue" />
+              <div className="mt-4 flex items-center justify-center space-x-2 text-gray-500 text-xs">
+                <Star className="w-3 h-3 text-silver" />
+                <span>Professional Project Management</span>
+                <Star className="w-3 h-3 text-silver" />
               </div>
             </div>
           </div>
